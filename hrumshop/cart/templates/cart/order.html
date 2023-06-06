@@ -1,0 +1,22 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+
+<form action="{% url 'order_add' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+<div class="form-error">{{ form.non_field_errors }}</div>
+
+<div class="client_data">
+{% for f in form %}
+<p class="client_data_forms"><label class="form_label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+
+
+    <button class="bt_accept" type="submit">Добавить</button>
+</div>
+</form>
+
+{% endblock %}

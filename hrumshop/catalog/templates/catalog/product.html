@@ -1,0 +1,38 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="product">
+<h1> {{product}} </h1>
+
+<div class="product_detail">
+<img class="product_detail_img" src="{{ product.photo.url }}">
+
+	<div class="product_specs">
+		<span class="product_spec"> Цена: {{product.price}} ₽</span>
+		<span class="product_spec"> Вес: {{product.weight}} гр.</span>
+		<span class="product_spec"> Возраст: {{product.old}}</span>
+		<span class="product_spec"> {{product.description}}</span>
+		<div class="buy_product">
+		<div class="quantity_inner"> 
+			
+			<form class="form_buy_product" id="form_buy_product_{{ product.id }}" action="{% url 'cart_add' %}"> {% csrf_token %}
+				<input type="text" value="1" size="2" class="input_quantity" id="quantity" data-max-count="30" />
+		    	<button type="submit" class="bt_buy_product" id="submit_btn"
+		        	data-id = "{{ product.id }}"
+		        	data-price = "{{ product.price }}">
+		    		<span>В корзину</span>
+		    	</button>       
+			</form>
+		    <button class="bt_minus">
+		        <svg viewBox="0 0 24 24" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+		    </button>
+		   
+		    <button class="bt_plus">
+		        <svg viewBox="0 0 24 24" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+		    </button>
+		    </div>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<p></p>
+    {% for i in products %}
+        <b>{{i.name}}</b>
+    {% endfor %}
+
+{% endblock %}

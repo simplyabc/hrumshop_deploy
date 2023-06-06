@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{name}}</title>
+	<meta charset="UTF-8">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="{% static 'catalog/images/main.ico' %}" type="image/x-icon"/>
+	<link rel="stylesheet" href="{% static 'catalog/css/styles_desktop.css' %}">
+	<link rel="stylesheet" href="{% static 'catalog/css/styles_mobile.css' %}">
+	<link rel="stylesheet" href="{% static 'catalog/css/btn.css' %}">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="{% static 'catalog/js/scripts.js' %}"></script>
+
+</head>
+<body>
+
+
+
+{% block apptoolbar %}
+<div class = "container menu">
+	<div class="container top-container">
+
+		<div>
+		<a class="logo" href="#"> <img class="logo_img" src="../../static/catalog/images/logo.png" alt=""> </a>
+		</div>
+		<div class="toolbar_social">
+			<a class="social" href="#">
+				<img class="logo_vk" src="../../static/catalog/images/vk.png" alt="">
+			</a>
+			<a class="social" href="#">
+				<img class="logo_telegram" src="../../static/catalog/images/telegram.png" alt="">
+			</a>
+			<a class="social" href="#">
+				<img class="logo_whatsapp" src="../../static/catalog/images/whatsapp.png" alt="">
+			</a>
+		</div>
+
+		<a class="phone" href="tel:+79991052429">
+			<img class="logo_phone" src="../../static/catalog/images/phone.png" alt="">
+			<span class="text_phone">+7(999)105-24-29</span>
+		</a>
+    {% for i in toolbar %}
+    	{% if i.url_name == 'cart' %}
+		<a class="toolbar" id="{{ i.url_name }}" href="{% url i.url_name %}">
+			<img class="logo_{{ i.url_name }}" src="{{ i.src }}" alt="">
+			
+			<span class="text_{{ i.url_name }}">{{i.name}}</span>
+			<span class="total_quantity"> </span>
+			<span class="total_price"> {{ cart_total_price }} ₽ </span>
+		</a>
+		{% else %}
+		<a class="toolbar" id="{{ i.url_name }}" href="{% url i.url_name %}">
+			<img class="logo_{{ i.url_name }}" src="{{ i.src }}" alt="">
+			<span class="text_{{ i.url_name }}">{{i.name}}</span>
+		</a>
+		{% endif %}
+    {% endfor %}
+	</div>
+
+{% endblock apptoolbar %}
+
+<div class="cats_bar">
+
+	{% for i in cats %}
+	<a class="cat_bar" href="{{ i.get_absolute_url }}">
+		<img class="logo_{{ i.slug }}" src="../../static/catalog/images/{{ i.slug }}.png" alt="">
+		<span class="text_{{ i.slug }}">{{i.name}}</span>
+	</a>
+	{% endfor %}
+
+</div>
+</div>
+{% block content %}
+{% endblock %}
+<input type="hidden" id="cart_id" value="{{ cart_id }}">
+<input type="hidden" id="cart_total_quantity" value="{{ cart_total_quantity }}">
+<input type="hidden" id="cart_price" value="{{ cart_price }}">
+
+</body>
+</html>

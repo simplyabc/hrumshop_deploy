@@ -1,0 +1,35 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<h1> {{name}} </h1>
+	<div class="products">
+	{% for i in products %}
+	<div class="product_data" id="product_data">
+		<a class="product_property" href="{{ i.get_absolute_url }}">
+			<img class="product_img" src="{{ i.photo.url }}">
+			<span class="product_name">{{ i.name }}</span> <span class="product_weight"> {{ i.weight }} гр.</span>
+			<span class="product_price">{{i.price}} ₽</span>
+		</a>
+		<div class="quantity_inner"> 
+			<form class="form_buy_product" id="form_buy_product_{{ i.id }}" action="{% url 'cart_add' %}"> {% csrf_token %}
+				<input type="text" value="1" size="2" class="input_quantity" id="quantity" data-max-count="30" />
+		    	<button type="submit" class="bt_buy_cat" id="submit_btn"
+		        	data-id = "{{ i.id }}"
+		        	data-price = "{{ i.price }}">
+		    		<span>В корзину</span>
+		    	</button>       
+			</form>
+		    <button class="bt_minus">
+		        <svg viewBox="0 0 24 24" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+		    </button>
+		   
+		    <button class="bt_plus">
+		        <svg viewBox="0 0 24 24" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+		    </button>
+		</div>
+	</div>
+	{% endfor %}
+	</div>
+	<h1>{{ some }}</h1>
+{% endblock %}
+

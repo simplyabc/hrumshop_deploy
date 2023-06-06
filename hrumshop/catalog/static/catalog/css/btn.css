@@ -1,0 +1,50 @@
+.change_product {
+    width: 115px;
+    height: 30px;
+    border-radius: 13px;
+    border: 1.5px solid #CE242B;
+    background: #FFF;
+}
+
+.change_product .input_quantity {
+    width: 40px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    font-family: Circe, monospace;
+    margin: 0 0 25px 0;
+}
+
+
+.quantity_inner .bt_minus,
+.quantity_inner .bt_plus,
+.quantity_inner .bt_buy_product,
+.quantity_inner .input_quantity,
+{
+    height: 30px;
+    width: 40px;
+    padding: 0;
+    border: 0;
+    background: #FFF;
+    cursor: pointer;
+    outline: 0;
+    border-radius: 26px;
+}
+
+.change_product .bt_minus svg,
+.change_product .bt_plus svg,
+.change_product svg {
+    stroke: #CE242B;
+    stroke-width: 4;
+    transition: 0.5s;
+    margin: 8px;
+    fill: none;
+    height: 15px;
+    width: 21px;;
+}
+
+.change_product .bt_buy_product {
+
+}
+
