@@ -17,14 +17,12 @@
 </head>
 <body>
 
-
-
 {% block apptoolbar %}
 <div class = "container menu">
 	<div class="container top-container">
 
 		<div>
-		<a class="logo" href="#"> <img class="logo_img" src="../../static/catalog/images/logo.png" alt=""> </a>
+		<a class="logo" href="{{ cats.0.get_absolute_url }}"> <img class="logo_img" src="../../static/catalog/images/logo.png" alt=""> </a>
 		</div>
 		<div class="toolbar_social">
 			<a class="social" href="#">
