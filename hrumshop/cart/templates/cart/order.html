@@ -1,10 +1,8 @@
 {% extends 'catalog/base.html' %}
 
 {% block content %}
-<h1>{{title}}</h1>
 
-<form action="{% url 'order_add' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+<form action="{% url 'order_add' %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
 
 <div class="form-error">{{ form.non_field_errors }}</div>
 
@@ -15,7 +13,7 @@
 {% endfor %}
 
 
-    <button class="bt_accept" type="submit">Добавить</button>
+<button class="bt_accept" type="submit">Добавить</button>
 </div>
 </form>
 
