@@ -22,28 +22,25 @@
 	<div class="container top-container">
 
 		<div>
-		<a class="logo" href="{{ cats.0.get_absolute_url }}"> <img class="logo_img" src="../../static/catalog/images/logo.png" alt=""> </a>
+		<a class="logo" href="{{ cats.0.get_absolute_url }}"> <img class="logo_img" src="{% static 'catalog/images/logo.png' %}" alt=""> </a>
 		</div>
 		<div class="toolbar_social">
 			<a class="social" href="#">
-				<img class="logo_vk" src="../../static/catalog/images/vk.png" alt="">
+				<img class="logo_vk" src="{% static 'catalog/images/vk.png' %}" alt="">
 			</a>
 			<a class="social" href="#">
-				<img class="logo_telegram" src="../../static/catalog/images/telegram.png" alt="">
-			</a>
-			<a class="social" href="#">
-				<img class="logo_whatsapp" src="../../static/catalog/images/whatsapp.png" alt="">
+				<img class="logo_telegram" src="{% static 'catalog/images/telegram.png' %}" alt="">
 			</a>
 		</div>
 
 		<a class="phone" href="tel:+79991052429">
-			<img class="logo_phone" src="../../static/catalog/images/phone.png" alt="">
+			<img class="logo_phone" src="{% static 'catalog/images/phone.png' %}" alt="">
 			<span class="text_phone">+7(999)105-24-29</span>
 		</a>
     {% for i in toolbar %}
     	{% if i.url_name == 'cart' %}
 		<a class="toolbar" id="{{ i.url_name }}" href="{% url i.url_name %}">
-			<img class="logo_{{ i.url_name }}" src="{{ i.src }}" alt="">
+			<img class="logo_{{ i.url_name }}" src="{% static i.src %}" alt="">
 			
 			<span class="text_{{ i.url_name }}">{{i.name}}</span>
 			<span class="total_quantity"> </span>
@@ -51,7 +48,7 @@
 		</a>
 		{% else %}
 		<a class="toolbar" id="{{ i.url_name }}" href="{% url i.url_name %}">
-			<img class="logo_{{ i.url_name }}" src="{{ i.src }}" alt="">
+			<img class="logo_{{ i.url_name }}" src="{% static i.src %}" alt="">
 			<span class="text_{{ i.url_name }}">{{i.name}}</span>
 		</a>
 		{% endif %}
@@ -64,7 +61,7 @@
 
 	{% for i in cats %}
 	<a class="cat_bar" href="{{ i.get_absolute_url }}">
-		<img class="logo_{{ i.slug }}" src="../../static/catalog/images/{{ i.slug }}.png" alt="">
+		<img class="logo_{{ i.slug }}" src='{% static "catalog/images/" %}{{ i.slug }}.png' alt="">
 		<span class="text_{{ i.slug }}">{{i.name}}</span>
 	</a>
 	{% endfor %}

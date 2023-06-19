@@ -2,27 +2,21 @@ from catalog.utils import DataMixin
 from .models import Order, Cart
 from catalog.models import Product
 from django.views.generic import TemplateView, ListView, CreateView
-from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import OrderAddForm
 
-from django.conf import settings
-
 
 # cart добавляется перед id продукта, чтобы точно знать, что этот элемент сессии принадлежит корзине
-
-
 def cart_add(request):
     data = request.POST
     request.session[f"cart_{data.get('id')}"] = data.get('quantity')
-
     return HttpResponse()
 
 
-def cart_remove(request):
+def product_cart_remove(request):
     data = request.POST
     del request.session[f"cart_{data.get('id')}"]
-
     return HttpResponse()
 
 
@@ -40,8 +34,9 @@ class OrderAdd(DataMixin, CreateView):
 
     def form_valid(self, form):
         instance = form.save()
-
-        Order.objects.filter(pk=instance.id).update(total_price=self.get_dynamic_data()['cart_total_price'])
+        print(instance)
+        cart_total_price = self.get_cart_price()['cart_total_price']
+        Order.objects.filter(pk=instance.id).update(total_price=cart_total_price)
         cart_session = self.get_cart_session().items()
         for k, v in cart_session:
             Cart.objects.create(order=Order.objects.get(pk=instance.id),
@@ -72,7 +67,6 @@ class CartList(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['name'] = 'Корзина'
         context['cart_session'] = self.get_cart_session()
-
         c_def = self.get_user_context()
         return dict(list(context.items()) + list(c_def.items()))
 

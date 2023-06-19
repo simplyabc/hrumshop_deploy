@@ -25,7 +25,7 @@ function all_total_price(price_array, id_array, id){
 	for (i = 0; i < price_array.length; i++){
 		all_total_price += price_array[i]
 	}
-	$('.total_price').text((all_total_price.toFixed(1) + ' ₽').replace(/\./g, ","))
+	$('.total_price').text((all_total_price.toFixed(1) + ' ₽').replace(/\,/g, "."))
 };
 
 function cart_change(form_id){

@@ -5,7 +5,7 @@ from catalog.models import Product
 
 class Order(models.Model):
     name = models.CharField(max_length=24, verbose_name='Имя')
-    phone = models.CharField(max_length=12, blank=True, null=True, verbose_name='Телефон')
+    phone = models.CharField(max_length=16, blank=True, null=True, verbose_name='Телефон')
     address = models.CharField(max_length=64, blank=True, null=True, verbose_name='Адрес доставки')
     comments = models.CharField(max_length=500, blank=True, null=True, verbose_name='Комментарий')
     total_price = models.FloatField(default=0, verbose_name='Сумма заказа')

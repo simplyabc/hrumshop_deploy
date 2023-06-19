@@ -13,7 +13,7 @@
 			<span class="product_weight"> {{ i.weight }} гр.</span> <span class="product_price">{{i.price}} ₽</span> 
 		</a>
 		<div class="quantity_inner" id="quantity_inner_{{ k }}">{% csrf_token %}
-	  		<form class="form_cart_product" id="form_cart_product_{{ k }}" action="{% url 'cart_remove' %}">{% csrf_token %}
+	  		<form class="form_cart_product" id="form_cart_product_{{ k }}" action="{% url 'product_cart_remove' %}">{% csrf_token %}
 				<input type="text" value="{{ v }}" size="2" class="input_quantity" id="quantity" data-max-count="30" />{% csrf_token %}
 				<button type="submit" class="bt_del" id="submit_btn"
 					data-id = "{{ i.id }}"
