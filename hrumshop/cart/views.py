@@ -1,10 +1,11 @@
 from catalog.utils import DataMixin
-from .models import Order, Cart
 from catalog.models import Product
+from .models import Order, Cart
 from django.views.generic import TemplateView, ListView, CreateView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import OrderAddForm
+from .hrumshop_bot import send_message
 
 
 # cart добавляется перед id продукта, чтобы точно знать, что этот элемент сессии принадлежит корзине
@@ -34,14 +35,33 @@ class OrderAdd(DataMixin, CreateView):
 
     def form_valid(self, form):
         instance = form.save()
-        print(instance)
         cart_total_price = self.get_cart_price()['cart_total_price']
         Order.objects.filter(pk=instance.id).update(total_price=cart_total_price)
+
         cart_session = self.get_cart_session().items()
-        for k, v in cart_session:
+        for product_id, quantity in cart_session:
             Cart.objects.create(order=Order.objects.get(pk=instance.id),
-                                product=Product.objects.get(pk=k),
-                                quantity=v)
+                                product=Product.objects.get(pk=product_id),
+                                quantity=quantity)
+
+        cart_data = {product_id: {'name': Product.objects.get(pk=product_id).name,
+                                  'weight': str(Product.objects.get(pk=product_id).weight),
+                                  'price': str(Product.objects.get(pk=product_id).price),
+                                  'quantity': str(quantity),
+                                  }
+                     for product_id, quantity in cart_session}
+
+        order_data = {'id': instance.id,
+                      'name': instance.name,
+                      'phone': instance.phone,
+                      'address': instance.address,
+                      'comments': instance.comments,
+                      'cart_data': cart_data,
+                      'cart_total_price': cart_total_price,
+                      }
+
+        send_message(order_data)
+
         return redirect(self.success_url)
 
 

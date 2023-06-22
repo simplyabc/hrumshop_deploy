@@ -1,0 +1,59 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="{{i.title}}" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="TYPO" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E231" />
+          <option value="E116" />
+          <option value="E114" />
+          <option value="E111" />
+          <option value="E265" />
+          <option value="E261" />
+          <option value="E117" />
+          <option value="E501" />
+          <option value="W292" />
+          <option value="E305" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="int.__getitem__" />
+          <option value="list.__getitem__" />
+          <option value="str.__setitem__" />
+          <option value="telebot.TeleBot" />
+          <option value="mysite.blog.models.Meta.title" />
+          <option value="hrumshop.models.Category.objects" />
+          <option value="hrumshop.models.CatalogCats.objects" />
+          <option value="hrumshop.models.Category.object" />
+          <option value="hrumshop.models.Product.objects" />
+          <option value="cart.models.Cart.objects" />
+          <option value="dict.name" />
+          <option value="cart.models.Order.objects" />
+          <option value="site.site.urls.hrumshop" />
+          <option value="hrumshop.cart.models.Cart.objects" />
+          <option value="hrumshop.cart.models.Order.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
