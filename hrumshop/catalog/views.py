@@ -1,17 +1,10 @@
-from django.shortcuts import render
 from .utils import *
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
+from django.shortcuts import redirect
 
 
-class Main(DataMixin, ListView):
-    model = Product
-    template_name = 'catalog/index.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['name'] = 'Страница'
-        c_def = self.get_user_context()
-        return dict(list(context.items()) + list(c_def.items()))
+def main():
+    return redirect('category/lakomstva/')
 
 
 class ProductsList(DataMixin, ListView):
@@ -40,13 +33,24 @@ class ProductDetail(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-def transport(request):
-    return render(request, 'catalog/transport.html', {'name': 'Доставка'})
+class Transport(DataMixin, TemplateView):
+    template_name = 'catalog/transport.html'
+
+    def get_context_data(self, *, objects_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = 'Доставка'
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
 
-def about(request):
-    return render(request, 'catalog/about.html', {'name': 'О сайте'})
+class About(DataMixin, TemplateView):
+    template_name = 'catalog/about.html'
+
+    def get_context_data(self, *, objects_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = 'О нас'
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
 
-def contact(request):
-    return render(request, 'catalog/contact.html', {'name': 'Контакты'})
+

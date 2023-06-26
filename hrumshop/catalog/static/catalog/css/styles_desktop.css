@@ -24,11 +24,12 @@ a, h1 {
     color: #000000;
     text-decoration: none;
     font-weight: 350;
-    font-size: 14pt;
+    font-size: 12pt;
 }
 
 h1 {
-   font-size: 25pt; 
+   font-size: 22pt; 
+   margin-top: 3%;
 }
 
 .top-container{
@@ -36,10 +37,6 @@ h1 {
     justify-content: space-between;
     align-items: center;
     font-weight: 350;
-}
-
-.toolbar_social, .phone, .toolbar {
-    width: 20%;
 }
 
 .logo {
@@ -50,33 +47,48 @@ h1 {
     position:relative
 }
 
-.toolbar_social, .social, .phone, .toolbar {
+.toolbar_contact, .social, .phone, .toolbar {
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .social:hover, .phone:hover, .toolbar:hover, .cat_bar:hover {
-    color: #CE242B; 
     transform: scale(1.1);
     transition: 0.25s;
 }
 
 .logo_img {
-    height: 115px;
+    height: 65px;
 }
 
-.logo_phone, .logo_cart, .logo_transport {
+.logo_phone, .logo_cart, .logo_transport, .logo_about {
     height: 27px;
 }
 
-.logo_vk, .logo_telegram, .logo_whatsapp {
-    height: 35px;
-    padding: 5px 5px 5px 5px;
+.logo_vk, .logo_telegram, .logo_phone {
+    padding: 5px 15px 5px 15px;
 }
 
-.text_phone, .text_cart, .text_transport {
+.logo_vk {
+    height: 23px;
+}
+
+.logo_telegram {
+    height: 26px;
+}
+
+.logo_phone {
+    height: 28px;
+}
+
+.text_cart, .text_transport, .text_about {
     padding-left: 7px;
+}
+
+.text_phone {
+    font-size: 11pt;
 }
 
 .total_quantity, .total_price {
@@ -85,14 +97,20 @@ h1 {
 }
 
 .total_quantity {
-    margin-bottom: 25px;
-    margin-left: -104px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 38px;
+    margin-left: -44px;
     font-size: 10pt;
+    border-radius: 50%;
+    border: 1.5px solid #E40001;
+    width: 18px;
+    height: 18px;
 }
 
 .total_price {
     margin-bottom: -51px;
-    margin-left: 28px;
+    margin-left: 4px;
     font-size: 11pt;
     width: 70px;
     text-align: center;
@@ -102,7 +120,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 4%;
+    margin-top: 3%;
 }
 
 .cat_bar {
@@ -111,7 +129,10 @@ h1 {
     justify-content: center;
     align-items: center;
     width: 25%;
-    padding: 0 1% 0 1%;
+    margin: 0px 17px 0px 0px;
+    padding: 5px 0px 5px 0px;
+    background-color: #F2F6FA;
+    border-radius: 7px;
 }
 
 .logo_lakomstva, .logo_suhoj-korm, .logo_akcii, .logo_vitaminy {
@@ -313,6 +334,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2%;
 }
 
 .client_data_forms {

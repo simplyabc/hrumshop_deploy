@@ -1,7 +1,7 @@
 {% extends 'catalog/base.html' %}
 
 {% block content %}
-
+<h1> {{name}} </h1>
 	<div class="form_cart">
 {% for k, v in cart_session.items %}
 	{% for i in cart_products %}

@@ -1,6 +1,7 @@
 {% extends 'catalog/base.html' %}
 
 {% block content %}
+<h1> {{name}} </h1>
 
 <form action="{% url 'order_add' %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
 
@@ -13,7 +14,7 @@
 {% endfor %}
 
 
-<button class="bt_accept" type="submit">Добавить</button>
+<button class="bt_accept" type="submit" >Оформить</button>
 </div>
 </form>
 

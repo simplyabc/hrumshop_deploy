@@ -2,7 +2,7 @@ from .models import Category, Product
 from django.views.generic import View
 
 toolbar = [
-    #{'name': 'Главная', 'url_name': 'main', 'src': ''},
+    {'name': 'О нас', 'url_name': 'about', 'src': 'catalog/images/about.png'},
     {'name': 'Доставка', 'url_name': 'transport', 'src': 'catalog/images/transport.png'},
     {'name': 'Корзина', 'url_name': 'cart', 'src': 'catalog/images/cart.png'},
 ]

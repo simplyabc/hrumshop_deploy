@@ -77,9 +77,15 @@ h1 {
 }
 
 .total_quantity {
+    display: flex;
+    justify-content: center;
     margin-bottom: 25px;
     margin-left: -28px;
     font-size: 10pt;
+    border-radius: 50%;
+    background-color: rgb(228,0,0, 0.6);
+    width: 19px;
+    height: 19px;
 }
 
 .total_price {

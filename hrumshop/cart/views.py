@@ -8,7 +8,6 @@ from .forms import OrderAddForm
 from .hrumshop_bot import send_message
 
 
-# cart добавляется перед id продукта, чтобы точно знать, что этот элемент сессии принадлежит корзине
 def cart_add(request):
     data = request.POST
     request.session[f"cart_{data.get('id')}"] = data.get('quantity')
@@ -33,17 +32,11 @@ class OrderAdd(DataMixin, CreateView):
         c_def = self.get_user_context()
         return dict(list(context.items()) + list(c_def.items()))
 
-    def form_valid(self, form):
-        instance = form.save()
-        cart_total_price = self.get_cart_price()['cart_total_price']
-        Order.objects.filter(pk=instance.id).update(total_price=cart_total_price)
+    def cart_remove(self):
+        self.request.session.clear()
 
-        cart_session = self.get_cart_session().items()
-        for product_id, quantity in cart_session:
-            Cart.objects.create(order=Order.objects.get(pk=instance.id),
-                                product=Product.objects.get(pk=product_id),
-                                quantity=quantity)
-
+    @staticmethod
+    def create_message(instance, cart_session, cart_total_price):
         cart_data = {product_id: {'name': Product.objects.get(pk=product_id).name,
                                   'weight': str(Product.objects.get(pk=product_id).weight),
                                   'price': str(Product.objects.get(pk=product_id).price),
@@ -61,6 +54,20 @@ class OrderAdd(DataMixin, CreateView):
                       }
 
         send_message(order_data)
+
+    def form_valid(self, form):
+        instance = form.save()
+        cart_total_price = self.get_cart_price()['cart_total_price']
+        Order.objects.filter(pk=instance.id).update(total_price=cart_total_price)
+
+        cart_session = self.get_cart_session().items()
+        for product_id, quantity in cart_session:
+            Cart.objects.create(order=Order.objects.get(pk=instance.id),
+                                product=Product.objects.get(pk=product_id),
+                                quantity=quantity)
+
+        self.create_message(instance, cart_session, cart_total_price)
+        self.cart_remove()
 
         return redirect(self.success_url)
 
@@ -89,7 +96,3 @@ class CartList(DataMixin, ListView):
         context['cart_session'] = self.get_cart_session()
         c_def = self.get_user_context()
         return dict(list(context.items()) + list(c_def.items()))
-
-
-def cart_order(request):
-    return render(request, 'cart/order.html', )

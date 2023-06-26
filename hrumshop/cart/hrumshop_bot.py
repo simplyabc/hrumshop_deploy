@@ -6,11 +6,16 @@ chat_id = 758700579
 
 
 def send_message(message):
+
     cart_data = '\n'.join(message['cart_data'][i]['name'] + '   ' +
                           message['cart_data'][i]['weight'] + ' гр.   ' +
                           message['cart_data'][i]['price'] + ' ₽   ' +
                           message['cart_data'][i]['quantity'] + ' шт.'
                           for i in message['cart_data'].keys())
+
+    phone = message['phone']
+    if phone[0] == '8':
+        message['phone'] = phone.replace(phone[0], '+7')
 
     bot.send_message(chat_id,
                      f"""

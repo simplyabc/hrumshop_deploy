@@ -24,25 +24,24 @@
 		<div>
 		<a class="logo" href="{{ cats.0.get_absolute_url }}"> <img class="logo_img" src="{% static 'catalog/images/logo.png' %}" alt=""> </a>
 		</div>
-		<div class="toolbar_social">
+		<div class="toolbar_contact">
 			<a class="social" href="#">
 				<img class="logo_vk" src="{% static 'catalog/images/vk.png' %}" alt="">
 			</a>
 			<a class="social" href="#">
 				<img class="logo_telegram" src="{% static 'catalog/images/telegram.png' %}" alt="">
 			</a>
-		</div>
-
-		<a class="phone" href="tel:+79991052429">
-			<img class="logo_phone" src="{% static 'catalog/images/phone.png' %}" alt="">
-			<span class="text_phone">+7(999)105-24-29</span>
+			<a class="phone" href="tel:+79991052429">
+				<img class="logo_phone" src="{% static 'catalog/images/phone.png' %}" alt="">
+			<span class="text_phone">+7 999 105 24 29</span>
 		</a>
+		</div>
     {% for i in toolbar %}
     	{% if i.url_name == 'cart' %}
 		<a class="toolbar" id="{{ i.url_name }}" href="{% url i.url_name %}">
 			<img class="logo_{{ i.url_name }}" src="{% static i.src %}" alt="">
 			
-			<span class="text_{{ i.url_name }}">{{i.name}}</span>
+			<span class="text_{{ i.url_name }}"></span>
 			<span class="total_quantity"> </span>
 			<span class="total_price"> {{ cart_total_price }} ₽ </span>
 		</a>
