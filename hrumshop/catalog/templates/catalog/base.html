@@ -36,22 +36,24 @@
 			<span class="text_phone">+7 999 105 24 29</span>
 		</a>
 		</div>
-    {% for i in toolbar %}
-    	{% if i.url_name == 'cart' %}
-		<a class="toolbar" id="{{ i.url_name }}" href="{% url i.url_name %}">
-			<img class="logo_{{ i.url_name }}" src="{% static i.src %}" alt="">
-			
-			<span class="text_{{ i.url_name }}"></span>
-			<span class="total_quantity"> </span>
-			<span class="total_price"> {{ cart_total_price }} ₽ </span>
-		</a>
-		{% else %}
-		<a class="toolbar" id="{{ i.url_name }}" href="{% url i.url_name %}">
-			<img class="logo_{{ i.url_name }}" src="{% static i.src %}" alt="">
-			<span class="text_{{ i.url_name }}">{{i.name}}</span>
-		</a>
-		{% endif %}
-    {% endfor %}
+		<div class="toolbar_main">
+	    {% for i in toolbar %}
+	    	{% if i.url_name == 'cart' %}
+			<a class="toolbar" id="{{ i.url_name }}" href="{% url i.url_name %}">
+				<img class="logo_{{ i.url_name }}" src="{% static i.src %}" alt="">
+				
+				<span class="text_{{ i.url_name }}"></span>
+				<span class="total_quantity"> </span>
+				<span class="total_price"> {{ cart_total_price }} ₽ </span>
+			</a>
+			{% else %}
+			<a class="toolbar" id="{{ i.url_name }}" href="{% url i.url_name %}">
+				<img class="logo_{{ i.url_name }}" src="{% static i.src %}" alt="">
+				<span class="text_{{ i.url_name }}">{{i.name}}</span>
+			</a>
+			{% endif %}
+	    {% endfor %}
+	</div>
 	</div>
 
 {% endblock apptoolbar %}
@@ -67,8 +69,28 @@
 
 </div>
 </div>
+
 {% block content %}
 {% endblock %}
+
+<div class="contact_mobile">
+	<span class="contact_text_mobile">Связаться с нами просто:</span>
+	<div class="toolbar_contact_mobile">
+		<a class="social" href="#">
+			<img class="logo_vk" src="{% static 'catalog/images/vk.png' %}" alt="">
+		</a>
+		<a class="social" href="#">
+			<img class="logo_telegram" src="{% static 'catalog/images/telegram.png' %}" alt="">
+		</a>
+		<a class="phone" href="tel:+79991052429">
+			<img class="logo_phone" src="{% static 'catalog/images/phone.png' %}" alt="">
+		</a>
+	</div>
+</div>
+
+
+
+
 <input type="hidden" id="cart_id" value="{{ cart_id }}">
 <input type="hidden" id="cart_total_quantity" value="{{ cart_total_quantity }}">
 <input type="hidden" id="cart_price" value="{{ cart_price }}">

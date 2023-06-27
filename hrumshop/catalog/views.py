@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.shortcuts import redirect
 
 
-def main():
+def main(request):
     return redirect('category/lakomstva/')
 
 

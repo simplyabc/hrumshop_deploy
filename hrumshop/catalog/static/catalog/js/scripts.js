@@ -9,15 +9,14 @@ $(document).ready(function(){
 
 	if (cart_id.length == 0) {
 		$('.total_quantity').text(cart_id_array.length)
+		$('.bt_order').css('display', 'none');
+		$('.cart_empty').css('display', 'flex');
 	}
 	else {
 		cart_id_array = cart_id.split(' ');
         $('.total_quantity').text(cart_id_array.length)
     }
 
-    if (cart_id.length == 0) {
-    	$('.bt_order').css('display', 'none');
-    }
 
 
 function all_total_price(price_array, id_array, id){
@@ -51,7 +50,6 @@ function cart_change(form_id){
 };
 
 $(document).ready(function(){
-// Убавляем кол-во по клику
 $('.quantity_inner .bt_minus').click(function() {
     let $input = $(this).parent().find('.input_quantity');
     let count = parseInt($input.val()) - 1;
@@ -63,7 +61,7 @@ $('.quantity_inner .bt_minus').click(function() {
     } 
 });
 
-// Прибавляем кол-во по клику
+
 $('.quantity_inner .bt_plus').click(function() {
     let $input = $(this).parent().find('.input_quantity');
     let count = parseInt($input.val()) + 1;
@@ -76,7 +74,7 @@ $('.quantity_inner .bt_plus').click(function() {
 
 
 }); 
-// Убираем все лишнее и невозможное при изменении поля
+
 $('.quantity_inner .input_quantity').bind("change keyup input click", function() {
     if (this.value.match(/[^0-9]/g)) {
         this.value = this.value.replace(/[^0-9]/g, '');
@@ -137,6 +135,11 @@ $('.form_cart_product').on('submit', function(e){
 		let index_id = cart_id_array.indexOf(String(id));
 		cart_id_array.splice(index_id, 1);
 		cart_price_array.splice(index_id, 1);
+
+		if (cart_id_array.length == 0) {
+			$('.bt_order').css('display', 'none');
+			$('.cart_empty').css('display', 'flex');
+		}
 
 		$('.total_quantity').text(cart_id_array.length);
 		all_total_price(cart_price_array, cart_id_array, id);

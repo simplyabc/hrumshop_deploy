@@ -43,8 +43,12 @@ h1 {
     display: flex;
 }
 
+.toolbar_main {
+    display: flex;
+}
+
 .toolbar {
-    position:relative
+    padding: 0 40px 0 0;
 }
 
 .toolbar_contact, .social, .phone, .toolbar {
@@ -60,7 +64,7 @@ h1 {
 }
 
 .logo_img {
-    height: 65px;
+    height: 85px;
 }
 
 .logo_phone, .logo_cart, .logo_transport, .logo_about {
@@ -227,6 +231,12 @@ h1 {
     flex-direction: column;
     align-items: flex-end;
     margin-top: 2%;
+}
+
+.cart_empty {
+    font-size: 15pt;
+    display: none;
+    justify-content: center;
 }
 
 .form_order {
